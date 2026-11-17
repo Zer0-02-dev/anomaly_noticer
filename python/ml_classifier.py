@@ -4,25 +4,12 @@ import joblib
 import numpy as np
 from scipy.sparse import hstack, csr_matrix
 from anomaly_noticer.canon import fix_newlines, mask, squeeze, collapse, shape_features
-
+import anomaly_noticer.data as noticer_data
+import importlib.resources as pkg_resources
 
 def _get_model_path():
-    """Find model.joblib relative to this installed package."""
-    pkg_dir = os.path.dirname(os.path.abspath(__file__))
-
-    candidates = [
-        os.path.join(pkg_dir, 'model.joblib'),
-        os.path.join(pkg_dir, 'data', 'model.joblib'),
-        os.path.join(os.path.dirname(pkg_dir), 'data', 'model.joblib'),
-    ]
-
-    for candidate in candidates:
-        if os.path.exists(candidate):
-            return candidate
-
-    raise FileNotFoundError(
-        "model.joblib not found. Searched:\n  " + "\n  ".join(candidates)
-    )
+    with pkg_resources.path(noticer_data, 'model.joblib') as path:
+        return str(path)
 
 
 class MLClassifier:
