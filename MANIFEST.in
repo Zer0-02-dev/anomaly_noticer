@@ -1,0 +1,27 @@
+# Explicitly include ONLY these files in the source distribution.
+# Everything else is excluded by default.
+
+include setup.py
+include default.nix
+include .gitignore
+
+# The package source (only these three .py files)
+include python/__init__.py
+include python/canon.py
+include python/ml_classifier.py
+
+# The trained model
+include data/model.joblib
+
+# Explicitly exclude everything else
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude *.pyo
+global-exclude *.egg-info
+global-exclude *.json
+global-exclude *.csv
+global-exclude *.jsonl
+global-exclude *.npz
+global-exclude *.log
+global-exclude *.txt
+prune python/__pycache__

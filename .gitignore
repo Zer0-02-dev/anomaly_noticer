@@ -1,0 +1,43 @@
+# Ignore all Python files except the distributed ones
+*.py
+!setup.py
+!python/__init__.py
+!python/canon.py
+!python/ml_classifier.py
+
+*sh
+*nix
+!default.nix
+
+# Ignore all JSON files (training configs, etc.)
+*.json
+
+# Ignore training data and artifacts
+*.csv
+*.jsonl
+*.npz
+*.log
+*.txt
+*.out
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Ignore sql
+sql/
+
+# Ignore data
+data/*
+# Keep model.joblib (it's the distributed artifact)
+!data/model.joblib
+
+# Ignore Nix build artifacts
+result
+result-*
+
